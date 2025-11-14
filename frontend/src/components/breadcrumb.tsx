@@ -8,11 +8,11 @@ interface BreadcrumbProps {
 export const Breadcrumb = ({ userName }: BreadcrumbProps) => {
   return (
     <nav className="flex items-center gap-2 mb-6">
-      <Link to="/users" className="text-primary hover:underline">
+      <Link to="/users" className="text-header hover:underline">
         Users
       </Link>
       <ChevronRight size={16} className="text-header" />
-      <span className="text-header">{userName}</span>
+      <span className="text-primary">{userName}</span>
     </nav>
   );
 };
