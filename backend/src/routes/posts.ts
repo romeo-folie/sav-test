@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { deletePost, getPostById, getPosts } from "../db/posts/posts";
+import { createPost, deletePost, getPostById, getPosts } from "../db/posts/posts";
 
 const router = Router();
 
@@ -11,6 +11,33 @@ router.get("/", async (req: Request, res: Response) => {
   }
   const posts = await getPosts(userId);
   res.send(posts);
+});
+
+router.post("/", async (req: Request, res: Response) => {
+  try {
+    const { title, body, userId } = req.body;
+
+    // intentionally keeping validation simple for this project
+    if (!title || typeof title !== "string" || title.trim() === "") {
+      res.status(400).send({ error: "Title is required and must be a non-empty string" });
+      return;
+    }
+
+    if (!body || typeof body !== "string" || body.trim() === "") {
+      res.status(400).send({ error: "Body is required and must be a non-empty string" });
+      return;
+    }
+
+    if (!userId || typeof userId !== "string" || userId.trim() === "") {
+      res.status(400).send({ error: "UserId is required and must be a non-empty string" });
+      return;
+    }
+
+    const newPost = await createPost(title.trim(), body.trim(), userId.trim());
+    res.status(201).send(newPost);
+  } catch (error) {
+    res.status(500).send({ error: "Internal server error" });
+  }
 });
 
 router.delete("/:id", async (req: Request, res: Response) => {
