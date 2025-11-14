@@ -162,7 +162,7 @@ describe('UsersTable', () => {
     });
 
     it('shows error message with correct styling', () => {
-      const { container } = renderWithRouter(
+      renderWithRouter(
         <UsersTable users={undefined} isLoading={false} isError={true} />
       );
 

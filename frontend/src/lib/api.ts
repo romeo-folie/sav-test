@@ -2,7 +2,7 @@ import type { User } from '../types/user';
 import type { Post } from '../types/post';
 import type { UsersCountResponse, DeletePostResponse } from '../types/api';
 
-const API_BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL}`;
 
 export const api = {
   async get<T>(endpoint: string, params?: Record<string, string | number>): Promise<T> {
