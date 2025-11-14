@@ -18,6 +18,10 @@ export const useDeletePost = () => {
       // Invalidate all post queries to refetch after deletion
       queryClient.invalidateQueries({ queryKey: ['posts'] });
     },
+    onError: (error: Error) => {
+      // Error handling will be done in the component
+      console.error('Failed to delete post:', error);
+    },
   });
 };
 

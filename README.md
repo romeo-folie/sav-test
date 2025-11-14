@@ -2,25 +2,28 @@
 
 A full-stack user management system with a Node.js/SQLite backend and React/TypeScript frontend.
 
-## Installation
+## Live URLs
+
+- **Frontend**: https://sav-test.vercel.app
+- **Backend**: https://sav-test-production.up.railway.app
+
+## Setup Instructions for Local Installation
 
 ### Prerequisites
 - Node.js (v18 or higher)
-- npm
+- npm (or pnpm)
 
-### Backend
+### Backend Setup
 ```bash
 cd backend
 npm install
 ```
 
-### Frontend
+### Frontend Setup
 ```bash
 cd frontend
 npm install
 ```
-
-## Setup
 
 ### Environment Variables
 
@@ -33,7 +36,7 @@ VITE_API_BASE_URL=http://localhost:3001
 
 The backend uses an SQLite database (`data.db`) located in the `backend` directory. The database should already be present with the required schema.
 
-## Running the Application
+## How to Run the Application
 
 ### Backend
 ```bash
@@ -52,6 +55,16 @@ npm run dev
 Frontend runs on `http://localhost:5173`
 
 **Note**: Start the backend server before the frontend.
+
+## How to Run Tests
+
+### Frontend Tests
+```bash
+cd frontend
+npm test
+```
+
+This will run the test suite using Vitest. The frontend includes tests for components and hooks.
 
 ## Building
 
