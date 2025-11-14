@@ -23,22 +23,24 @@ export const UsersPage = () => {
 
   return (
     <div className="min-h-screen bg-white p-8">
-      <h1 className="text-6xl font-medium font-sans leading-6xl tracking-normal mb-6 text-primary">Users</h1>
-      
-      <div className="bg-white rounded-lg mb-8">
-        <UsersTable
-          users={users}
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-6xl font-medium font-sans leading-6xl tracking-normal mb-6 text-primary">Users</h1>
+        
+        <div className="bg-white rounded-lg mb-8">
+          <UsersTable
+            users={users}
+            isLoading={isLoadingUsers || isLoadingCount}
+            isError={isUsersError}
+          />
+        </div>
+
+        <UsersPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
           isLoading={isLoadingUsers || isLoadingCount}
-          isError={isUsersError}
         />
       </div>
-
-      <UsersPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-        isLoading={isLoadingUsers || isLoadingCount}
-      />
     </div>
   );
 };

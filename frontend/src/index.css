@@ -33,6 +33,14 @@
   .text-blue {
     color: #3b82f6;
   }
+  
+  .bg-blue {
+    background-color: #3b82f6;
+  }
+  
+  .bg-blue-hover:hover {
+    background-color: #2563eb;
+  }
 }
 
 .lds-ellipsis,

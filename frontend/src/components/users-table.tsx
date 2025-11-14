@@ -45,9 +45,9 @@ export const UsersTable = ({ users, isLoading, isError }: UsersTableProps) => {
       <table className="w-full border-collapse">
         <thead className="text-lg">
           <tr className="border-b border-table">
-            <th className="text-left py-4 px-6 font-medium leading-5 text-header">Full name</th>
-            <th className="text-left py-4 px-6 font-medium leading-5 text-header">Email address</th>
-            <th className="text-left py-4 px-6 font-medium leading-5 text-header max-w-[392px] min-w-0">Address</th>
+            <th className="text-left py-4 px-6 font-medium leading-5 text-header max-w-[250px] min-w-0">Full name</th>
+            <th className="text-left py-4 px-6 font-medium leading-5 text-header max-w-[250px] min-w-0">Email address</th>
+            <th className="text-left py-4 px-6 font-medium leading-5 text-header max-w-[250px] min-w-0">Address</th>
           </tr>
         </thead>
         <tbody>
@@ -59,9 +59,17 @@ export const UsersTable = ({ users, isLoading, isError }: UsersTableProps) => {
                 className="border-b border-table last:border-b-0 cursor-pointer hover:bg-gray-50 transition-colors"
                 onClick={() => navigate(`/users/${user.id}/posts`, { state: { user } })}
               >
-                <td className="py-4 px-6 leading-5 text-primary">{user.name}</td>
-                <td className="py-4 px-6 leading-5 text-primary">{user.email}</td>
-                <td className="py-4 px-6 leading-5 text-primary max-w-[392px] min-w-0">
+                <td className="py-4 px-6 leading-5 text-primary">
+                  {/* <div className="truncate" title={user.name}> */}
+                    {user.name}
+                  {/* </div> */}
+                </td>
+                <td className="py-4 px-6 leading-5 text-primary max-w-[150px] min-w-0">
+                  <div className="truncate" title={user.email}>
+                    {user.email}
+                  </div>
+                </td>
+                <td className="py-4 px-6 leading-5 text-primary max-w-[150px] min-w-0">
                   <div className="truncate" title={address}>
                     {address || '-'}
                   </div>

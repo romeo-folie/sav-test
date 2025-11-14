@@ -95,7 +95,7 @@ export const PostForm = ({ isOpen, onClose, onSubmit }: PostFormProps) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 py-2 bg-[#3b82f6] text-white rounded-md hover:bg-[#2563eb] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 bg-blue bg-blue-hover text-white rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Publishing...' : 'Publish'}
             </button>
