@@ -54,21 +54,21 @@ export const UsersPagination = ({
   const pageNumbers = getPageNumbers();
 
   return (
-    <div className="flex justify-end items-center gap-2 mt-8">
+    <div className="flex justify-end items-center gap-1 md:gap-2 mt-8">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1 || isLoading}
-        className="px-3 py-2 disabled:opacity-40 disabled:cursor-not-allowed text-primary rounded transition-colors flex items-center gap-2"
+        className="px-2 py-2 md:px-4 md:py-3 disabled:opacity-40 disabled:cursor-not-allowed text-primary rounded transition-colors flex items-center gap-1 md:gap-2"
       >
-        <ChevronLeft size={15} />
-        <span className="text-base">Previous</span>
+        <ChevronLeft size={14} className="md:w-4 md:h-4" />
+        <span className="hidden md:inline text-sm md:text-base">Previous</span>
       </button>
 
-      <div className="flex items-center gap-2 mx-4">
+      <div className="flex items-center gap-1 md:gap-2 mx-2 md:mx-4">
         {pageNumbers.map((page, index) => {
           if (page === '...') {
             return (
-              <span key={`ellipsis-${index}`} className="px-2 text-primary text-base">
+              <span key={`ellipsis-${index}`} className="px-1 md:px-3 text-primary text-sm md:text-base">
                 ...
               </span>
             );
@@ -82,7 +82,7 @@ export const UsersPagination = ({
               key={pageNum}
               onClick={() => onPageChange(pageNum)}
               disabled={isLoading}
-              className={`min-w-[40px] h-12 px-4 py-2 rounded text-base font-medium ${
+              className={`min-w-[32px] h-8 px-2 py-1 md:min-w-[40px] md:h-12 md:px-4 md:py-3 rounded text-sm md:text-base font-medium ${
                 isActive
                   ? 'border-2 border-table text-primary'
                   : 'text-primary'
@@ -97,10 +97,10 @@ export const UsersPagination = ({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages || isLoading}
-        className="px-4 py-3 disabled:opacity-40 disabled:cursor-not-allowed text-primary rounded transition-colors flex items-center gap-2"
+        className="px-2 py-2 md:px-4 md:py-3 disabled:opacity-40 disabled:cursor-not-allowed text-primary rounded transition-colors flex items-center gap-1 md:gap-2"
       >
-        <span className="text-base">Next</span>
-        <ChevronRight size={15} />
+        <span className="hidden md:inline text-sm md:text-base">Next</span>
+        <ChevronRight size={14} className="md:w-4 md:h-4" />
       </button>
     </div>
   );

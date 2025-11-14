@@ -13,6 +13,8 @@ const formatAddress = (address: User['address']): string => {
   return `${address.street}, ${address.state}, ${address.city}, ${address.zipcode}`;
 };
 
+const headerCellClasses = "text-left py-2 px-3 md:py-4 md:px-6 font-medium leading-5 text-header max-w-[250px] min-w-0 text-sm md:text-base";
+
 export const UsersTable = ({ users, isLoading, isError }: UsersTableProps) => {
   const navigate = useNavigate();
 
@@ -45,9 +47,9 @@ export const UsersTable = ({ users, isLoading, isError }: UsersTableProps) => {
       <table className="w-full border-collapse">
         <thead className="text-lg">
           <tr className="border-b border-table">
-            <th className="text-left py-4 px-6 font-medium leading-5 text-header max-w-[250px] min-w-0">Full name</th>
-            <th className="text-left py-4 px-6 font-medium leading-5 text-header max-w-[250px] min-w-0">Email address</th>
-            <th className="text-left py-4 px-6 font-medium leading-5 text-header max-w-[250px] min-w-0">Address</th>
+            <th className={headerCellClasses}>Full name</th>
+            <th className={headerCellClasses}>Email address</th>
+            <th className={headerCellClasses}>Address</th>
           </tr>
         </thead>
         <tbody>
@@ -59,17 +61,15 @@ export const UsersTable = ({ users, isLoading, isError }: UsersTableProps) => {
                 className="border-b border-table last:border-b-0 cursor-pointer hover:bg-gray-50 transition-colors"
                 onClick={() => navigate(`/users/${user.id}/posts`, { state: { user } })}
               >
-                <td className="py-4 px-6 leading-5 text-primary">
-                  {/* <div className="truncate" title={user.name}> */}
-                    {user.name}
-                  {/* </div> */}
+                <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary text-sm md:text-base">
+                  {user.name}
                 </td>
-                <td className="py-4 px-6 leading-5 text-primary max-w-[150px] min-w-0">
+                <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary max-w-[150px] min-w-0 text-sm md:text-base">
                   <div className="truncate" title={user.email}>
                     {user.email}
                   </div>
                 </td>
-                <td className="py-4 px-6 leading-5 text-primary max-w-[150px] min-w-0">
+                <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary max-w-[150px] min-w-0 text-sm md:text-base">
                   <div className="truncate" title={address}>
                     {address || '-'}
                   </div>
