@@ -43,21 +43,21 @@ export const UsersTable = ({ users, isLoading, isError }: UsersTableProps) => {
   return (
     <div className="border border-table rounded-md overflow-hidden">
       <table className="w-full border-collapse">
-        <thead className="bg-white text-lg">
+        <thead className="text-lg">
           <tr className="border-b border-table">
             <th className="text-left py-4 px-6 font-medium leading-5 text-header">Full name</th>
             <th className="text-left py-4 px-6 font-medium leading-5 text-header">Email address</th>
             <th className="text-left py-4 px-6 font-medium leading-5 text-header max-w-[392px] min-w-0">Address</th>
           </tr>
         </thead>
-        <tbody className="bg-white">
+        <tbody>
           {users.map((user) => {
             const address = formatAddress(user.address);
             return (
               <tr
                 key={user.id}
-                className="border-b border-table last:border-b-0 cursor-pointer hover:bg-gray-100/30 transition-colors"
-                onClick={() => navigate(`/users/${user.id}/posts`)}
+                className="border-b border-table last:border-b-0 cursor-pointer hover:bg-gray-50 transition-colors"
+                onClick={() => navigate(`/users/${user.id}/posts`, { state: { user } })}
               >
                 <td className="py-4 px-6 leading-5 text-primary">{user.name}</td>
                 <td className="py-4 px-6 leading-5 text-primary">{user.email}</td>

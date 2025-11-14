@@ -25,6 +25,14 @@
   .border-table {
     border-color: #E2E8F0;
   }
+  
+  .text-red-light {
+    color: #ef4444;
+  }
+  
+  .text-blue {
+    color: #3b82f6;
+  }
 }
 
 .lds-ellipsis,
