@@ -44,41 +44,43 @@ export const UsersTable = ({ users, isLoading, isError }: UsersTableProps) => {
 
   return (
     <div className="border border-table rounded-md overflow-hidden">
-      <table className="w-full border-collapse">
-        <thead className="text-lg">
-          <tr className="border-b border-table">
-            <th className={headerCellClasses}>Full name</th>
-            <th className={headerCellClasses}>Email address</th>
-            <th className={headerCellClasses}>Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => {
-            const address = formatAddress(user.address);
-            return (
-              <tr
-                key={user.id}
-                className="border-b border-table last:border-b-0 cursor-pointer hover:bg-gray-50 transition-colors"
-                onClick={() => navigate(`/users/${user.id}/posts`, { state: { user } })}
-              >
-                <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary text-sm md:text-base">
-                  {user.name}
-                </td>
-                <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary max-w-[150px] min-w-0 text-sm md:text-base">
-                  <div className="truncate" title={user.email}>
-                    {user.email}
-                  </div>
-                </td>
-                <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary max-w-[150px] min-w-0 text-sm md:text-base">
-                  <div className="truncate" title={address}>
-                    {address || '-'}
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto pb-2">
+        <table className="w-full border-collapse min-w-[600px]">
+          <thead className="text-lg">
+            <tr className="border-b border-table">
+              <th className={headerCellClasses}>Full name</th>
+              <th className={headerCellClasses}>Email address</th>
+              <th className={headerCellClasses}>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => {
+              const address = formatAddress(user.address);
+              return (
+                <tr
+                  key={user.id}
+                  className="border-b border-table last:border-b-0 cursor-pointer hover:bg-gray-50 transition-colors"
+                  onClick={() => navigate(`/users/${user.id}/posts`, { state: { user } })}
+                >
+                  <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary text-sm md:text-base">
+                    {user.name}
+                  </td>
+                  <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary max-w-[150px] min-w-0 text-sm md:text-base">
+                    <div className="truncate" title={user.email}>
+                      {user.email}
+                    </div>
+                  </td>
+                  <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary max-w-[150px] min-w-0 text-sm md:text-base">
+                    <div className="truncate" title={address}>
+                      {address || '-'}
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
