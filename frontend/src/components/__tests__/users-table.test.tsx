@@ -22,14 +22,14 @@ describe('UsersTable', () => {
 
   const mockUsersWithAddress: User[] = [
     {
-      id: 1,
+      id: '550e8400-e29b-41d4-a716-446655440000',
       name: 'John Doe',
       username: 'johndoe',
       email: 'john@example.com',
       phone: '123-456-7890',
       address: {
-        id: 'addr1',
-        user_id: '1',
+        id: '660e8400-e29b-41d4-a716-446655440000',
+        user_id: '550e8400-e29b-41d4-a716-446655440000',
         street: '123 Main St',
         state: 'CA',
         city: 'San Francisco',
@@ -37,14 +37,14 @@ describe('UsersTable', () => {
       },
     },
     {
-      id: 2,
+      id: '550e8400-e29b-41d4-a716-446655440001',
       name: 'Jane Smith',
       username: 'janesmith',
       email: 'jane@example.com',
       phone: '098-765-4321',
       address: {
-        id: 'addr2',
-        user_id: '2',
+        id: '660e8400-e29b-41d4-a716-446655440001',
+        user_id: '550e8400-e29b-41d4-a716-446655440001',
         street: '456 Oak Ave',
         state: 'NY',
         city: 'New York',
@@ -55,7 +55,7 @@ describe('UsersTable', () => {
 
   const mockUsersWithoutAddress: User[] = [
     {
-      id: 3,
+      id: '550e8400-e29b-41d4-a716-446655440002',
       name: 'Bob Johnson',
       username: 'bobjohnson',
       email: 'bob@example.com',
@@ -107,14 +107,14 @@ describe('UsersTable', () => {
     it('truncates long addresses with ellipsis and shows full address in title', () => {
       const longAddressUser: User[] = [
         {
-          id: 4,
+          id: '550e8400-e29b-41d4-a716-446655440003',
           name: 'Long Address User',
           username: 'longuser',
           email: 'long@example.com',
           phone: '555-0000',
           address: {
-            id: 'addr3',
-            user_id: '4',
+            id: '660e8400-e29b-41d4-a716-446655440002',
+            user_id: '550e8400-e29b-41d4-a716-446655440003',
             street: 'This is a very long street name that should be truncated',
             state: 'CA',
             city: 'A very long city name',
@@ -195,7 +195,7 @@ describe('UsersTable', () => {
 
       await user.click(firstRow!);
 
-      expect(mockNavigate).toHaveBeenCalledWith('/users/1/posts', { state: { user: mockUsersWithAddress[0] } });
+      expect(mockNavigate).toHaveBeenCalledWith('/users/550e8400-e29b-41d4-a716-446655440000/posts', { state: { user: mockUsersWithAddress[0] } });
     });
 
     it('passes user data in navigation state', async () => {
@@ -205,7 +205,7 @@ describe('UsersTable', () => {
       const secondRow = screen.getByText('Jane Smith').closest('tr');
       await user.click(secondRow!);
 
-      expect(mockNavigate).toHaveBeenCalledWith('/users/2/posts', { state: { user: mockUsersWithAddress[1] } });
+      expect(mockNavigate).toHaveBeenCalledWith('/users/550e8400-e29b-41d4-a716-446655440001/posts', { state: { user: mockUsersWithAddress[1] } });
     });
   });
 });

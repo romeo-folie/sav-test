@@ -36,7 +36,7 @@ describe('useUsers', () => {
     it('sets up React Query with correct queryKey', async () => {
       const mockUsers: User[] = [
         {
-          id: 1,
+          id: '550e8400-e29b-41d4-a716-446655440000',
           name: 'John Doe',
           username: 'johndoe',
           email: 'john@example.com',
@@ -91,14 +91,14 @@ describe('useUsers', () => {
     it('returns data when fetch succeeds', async () => {
       const mockUsers: User[] = [
         {
-          id: 1,
+          id: '550e8400-e29b-41d4-a716-446655440000',
           name: 'John Doe',
           username: 'johndoe',
           email: 'john@example.com',
           phone: '123-456-7890',
           address: {
-            id: 'addr1',
-            user_id: '1',
+            id: '660e8400-e29b-41d4-a716-446655440000',
+            user_id: '550e8400-e29b-41d4-a716-446655440000',
             street: '123 Main St',
             state: 'CA',
             city: 'San Francisco',
@@ -106,7 +106,7 @@ describe('useUsers', () => {
           },
         },
         {
-          id: 2,
+          id: '550e8400-e29b-41d4-a716-446655440001',
           name: 'Jane Smith',
           username: 'janesmith',
           email: 'jane@example.com',
