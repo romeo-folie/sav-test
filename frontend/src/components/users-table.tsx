@@ -70,7 +70,7 @@ export const UsersTable = ({ users, isLoading, isError }: UsersTableProps) => {
                       {user.email}
                     </div>
                   </td>
-                  <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary max-w-[150px] min-w-0 text-sm md:text-base">
+                  <td className="py-2 px-3 md:py-4 md:px-6 leading-5 text-primary max-w-[200px] min-w-0 text-sm md:text-base">
                     <div className="truncate" title={address}>
                       {address || '-'}
                     </div>

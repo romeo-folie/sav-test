@@ -1,25 +1,26 @@
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useUserPosts, useDeletePost, useCreatePost } from '../hooks/usePosts';
+import { useUser } from '../hooks/useUsers';
 import { Breadcrumb } from '../components/breadcrumb';
 import { PostCard } from '../components/post-card';
 import { NewPostCard } from '../components/new-post-card';
 import { PostForm } from '../components/post-form';
 import { Loader } from '../components/loader';
 import { Toast } from '../components/toast';
-import type { User } from '../types/user';
+import { ConfirmationModal } from '../components/confirmation-modal';
 
 export const UserPostsPage = () => {
   const { userId } = useParams<{ userId: string }>();
-  const location = useLocation();
   const navigate = useNavigate();
-  const user = (location.state as { user?: User })?.user;
 
-  const { data: posts, isLoading, isError } = useUserPosts(userId || '');
-  const deletePostMutation = useDeletePost();
+  const { data: user, isLoading: isUserLoading, isError: isUserError } = useUser(userId || '');
+  const { data: posts, isLoading: isPostsLoading, isError: isPostsError } = useUserPosts(userId || '');
+  const deletePostMutation = useDeletePost(userId || '');
   const createPostMutation = useCreatePost();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
+  const [postToDelete, setPostToDelete] = useState<string | null>(null);
 
   useEffect(() => {
     if (showErrorToast) {
@@ -35,17 +36,31 @@ export const UserPostsPage = () => {
     return null;
   }
 
-  if (!user) {
+  if (isUserError) {
     navigate('/users');
     return null;
   }
 
-  const handleDelete = (postId: number) => {
-    deletePostMutation.mutate(postId, {
-      onError: () => {
-        setShowErrorToast(true);
-      },
-    });
+  const isLoading = isUserLoading || isPostsLoading;
+  const isError = isPostsError;
+
+  const handleDelete = (postId: string) => {
+    setPostToDelete(postId);
+  };
+
+  const confirmDelete = () => {
+    if (postToDelete !== null) {
+      deletePostMutation.mutate(postToDelete, {
+        onError: () => {
+          setShowErrorToast(true);
+        },
+      });
+      setPostToDelete(null);
+    }
+  };
+
+  const cancelDelete = () => {
+    setPostToDelete(null);
   };
 
   const handleCreatePost = async (title: string, body: string) => {
@@ -58,6 +73,18 @@ export const UserPostsPage = () => {
 
   const postCount = posts?.length || 0;
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen p-8">
       <Toast
@@ -66,15 +93,15 @@ export const UserPostsPage = () => {
         onClose={() => setShowErrorToast(false)}
       />
 
-      {(isLoading || deletePostMutation.isPending) && (
+      {deletePostMutation.isPending && (
         <div className="fixed inset-0 flex justify-center items-center">
           <Loader />
         </div>
       )}
 
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full max-w-[70%] lg:max-w-4xl mx-auto">
         <Breadcrumb userName={user.name} />
-        
+
         <h1 className="text-2xl font-semibold mb-2 text-primary">{user.name}</h1>
         <p className="text-header mb-8">
           {user.email} <span className="text-primary">• {postCount} {postCount === 1 ? 'Post' : 'Posts'}</span>
@@ -86,7 +113,7 @@ export const UserPostsPage = () => {
           </div>
         )}
 
-      {!isLoading && !deletePostMutation.isPending && !isError && (
+        {!isError && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <NewPostCard onClick={() => setIsFormOpen(true)} />
             {posts?.map((post) => (
@@ -101,6 +128,16 @@ export const UserPostsPage = () => {
         onClose={() => setIsFormOpen(false)}
         onSubmit={handleCreatePost}
         userId={userId}
+      />
+
+      <ConfirmationModal
+        isOpen={postToDelete !== null}
+        title="Delete Post"
+        message="Are you sure you want to delete this post? This action cannot be undone."
+        confirmText="Delete"
+        cancelText="Cancel"
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
       />
     </div>
   );

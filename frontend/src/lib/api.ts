@@ -77,6 +77,10 @@ export const fetchUsersCount = async (): Promise<number> => {
   return response.count;
 };
 
+export const fetchUserById = async (userId: string | number): Promise<User> => {
+  return api.get<User>(`/users/${userId}`);
+};
+
 export const fetchUserPosts = async (userId: string | number): Promise<Post[]> => {
   return api.get<Post[]>('/posts', { userId });
 };

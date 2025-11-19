@@ -8,6 +8,9 @@ interface PostFormProps {
   userId: string | number;
 }
 
+const MAX_TITLE_LENGTH = 100;
+const MAX_BODY_LENGTH = 500;
+
 export const PostForm = ({ isOpen, onClose, onSubmit }: PostFormProps) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
@@ -22,6 +25,16 @@ export const PostForm = ({ isOpen, onClose, onSubmit }: PostFormProps) => {
 
     if (!title.trim() || !body.trim()) {
       setError('Both title and content are required');
+      return;
+    }
+
+    if (title.length > MAX_TITLE_LENGTH) {
+      setError(`Title must be ${MAX_TITLE_LENGTH} characters or less`);
+      return;
+    }
+
+    if (body.length > MAX_BODY_LENGTH) {
+      setError(`Content must be ${MAX_BODY_LENGTH} characters or less`);
       return;
     }
 

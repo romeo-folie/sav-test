@@ -23,7 +23,7 @@ export const UsersPage = () => {
 
   return (
     <div className="min-h-screen bg-white p-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium font-sans leading-tight sm:leading-normal md:leading-6xl tracking-normal mb-6 text-primary">Users</h1>
         
         <div className="bg-white rounded-lg mb-8">

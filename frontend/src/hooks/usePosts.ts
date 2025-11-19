@@ -9,14 +9,14 @@ export const useUserPosts = (userId: string | number) => {
   });
 };
 
-export const useDeletePost = () => {
+export const useDeletePost = (userId: string | number) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (postId: string | number) => deletePost(postId),
     onSuccess: () => {
-      // Invalidate all post queries to refetch after deletion
-      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      // Invalidate only the specific user's posts to refetch after deletion
+      queryClient.invalidateQueries({ queryKey: ['posts', userId] });
     },
     onError: (error: Error) => {
       // Error handling will be done in the component

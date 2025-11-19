@@ -129,6 +129,41 @@ Returns the total number of users.
 }
 ```
 
+#### `GET /users/:id`
+Returns a single user by ID with address information.
+
+**Parameters:**
+- `id` (number, required): The ID of the user to retrieve
+
+**Example:**
+```
+GET /users/1
+```
+
+**Response (200):**
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "username": "johndoe",
+  "email": "john@example.com",
+  "phone": "123-456-7890",
+  "address": {
+    "id": "1",
+    "user_id": "1",
+    "street": "123 Main St",
+    "state": "California",
+    "city": "San Francisco",
+    "zipcode": "94102"
+  }
+}
+```
+
+**Errors:**
+- `400`: Invalid user ID
+- `404`: User not found
+- `500`: Internal server error
+
 ### Post Endpoints
 
 #### `GET /posts`
