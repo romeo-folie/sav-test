@@ -99,7 +99,7 @@ export const UserPostsPage = () => {
         </div>
       )}
 
-      <div className="w-full max-w-[70%] lg:max-w-4xl mx-auto">
+      <div className="w-full max-w-[70%] lg:max-w-3xl mx-auto">
         <Breadcrumb userName={user.name} />
 
         <h1 className="text-2xl font-semibold mb-2 text-primary">{user.name}</h1>

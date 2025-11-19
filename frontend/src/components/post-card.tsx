@@ -16,10 +16,10 @@ export const PostCard = ({ post, onDelete }: PostCardProps) => {
       >
         <Trash2 size={18} />
       </button>
-      <h3 className="font-semibold text-primary text-lg mb-2 pr-8 mb-4 line-clamp-3 overflow-hidden">
+      <h3 className="font-semibold text-primary text-lg pr-8 mb-4 line-clamp-3 overflow-hidden">
         {post.title}
       </h3>
-      <p className="text-base leading-relaxed line-clamp-10 overflow-hidden">
+      <p className="text-sm leading-relaxed line-clamp-8 overflow-hidden">
         {post.body}
       </p>
     </div>
